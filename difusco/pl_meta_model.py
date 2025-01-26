@@ -191,11 +191,24 @@ class COMetaModel(pl.LightningModule):
     
     if generation_type == 'binomial':
       dn_np = torch.clip(yt_pred, torch.tensor(0, device=yt_pred.device), self.args.num_states - 1 - xt)
-      # print(yt_pred.min(), yt_pred.max())
       dist = torch.distributions.Binomial(total_count = dn_np.round(), probs = pp)
+    
     elif generation_type == 'poisson':
-      dn_np = yt_pred
+      dn_np = torch.clip(yt_pred, torch.tensor(0, device=yt_pred.device), self.args.num_states - 1 - xt)
       dist = torch.distributions.Poisson(dn_np * pp) # tau-leaping
+    
+    elif generation_type == 'mixed':
+      delta = (target_t - t).abs()
+      threshold = 0.7
+      if delta < threshold:
+        # print("poisson", delta.item())
+        dn_np = torch.clip(yt_pred, torch.tensor(0, device=yt_pred.device), self.args.num_states - 1 - xt)
+        dist = torch.distributions.Poisson(dn_np * pp) # tau-leaping
+      else:
+        # print("binomial", delta.item())
+        dn_np = torch.clip(yt_pred, torch.tensor(0, device=yt_pred.device), self.args.num_states - 1 - xt)
+        dist = torch.distributions.Binomial(total_count = dn_np.round(), probs = pp)
+        
     else:
       raise NotImplementedError(f'Sampling method is not implemented.')
     

@@ -1,0 +1,83 @@
+Running ./runs_test_sample/test_tsp500_categorical.sh...
+Seed set to 42
+Loaded "././difusco/tsp500_train_concorde.txt" with 128000 lines
+Loaded "././difusco/tsp500_test_concorde.txt" with 128 lines
+Loaded "././difusco/tsp500_test_concorde.txt" with 128 lines
+GPU available: True (cuda), used: True
+TPU available: False, using: 0 TPU cores
+IPU available: False, using: 0 IPUs
+HPU available: False, using: 0 HPUs
+----------------------------------------------------------------------------------------------------
+GNNEncoder(
+  (node_embed): Linear(in_features=256, out_features=256, bias=True)
+  (edge_embed): Linear(in_features=256, out_features=256, bias=True)
+  (pos_embed): PositionEmbeddingSine()
+  (edge_pos_embed): ScalarEmbeddingSine()
+  (time_embed): Sequential(
+    (0): Linear(in_features=256, out_features=128, bias=True)
+    (1): ReLU()
+    (2): Linear(in_features=128, out_features=128, bias=True)
+  )
+  (out): Sequential(
+    (0): GroupNorm32(32, 256, eps=1e-05, affine=True)
+    (1): ReLU()
+    (2): Conv2d(256, 2, kernel_size=(1, 1), stride=(1, 1))
+  )
+  (layers): ModuleList(
+    (0-11): 12 x GNNLayer(
+      (U): Linear(in_features=256, out_features=256, bias=True)
+      (V): Linear(in_features=256, out_features=256, bias=True)
+      (A): Linear(in_features=256, out_features=256, bias=True)
+      (B): Linear(in_features=256, out_features=256, bias=True)
+      (C): Linear(in_features=256, out_features=256, bias=True)
+      (norm_h): LayerNorm((256,), eps=1e-05, elementwise_affine=True)
+      (norm_e): LayerNorm((256,), eps=1e-05, elementwise_affine=True)
+    )
+  )
+  (time_embed_layers): ModuleList(
+    (0-11): 12 x Sequential(
+      (0): ReLU()
+      (1): Linear(in_features=128, out_features=256, bias=True)
+    )
+  )
+  (per_layer_out): ModuleList(
+    (0-11): 12 x Sequential(
+      (0): LayerNorm((256,), eps=1e-05, elementwise_affine=True)
+      (1): SiLU()
+      (2): Linear(in_features=256, out_features=256, bias=True)
+    )
+  )
+)
+----------------------------------------------------------------------------------------------------
+
+[rank: 0] Seed set to 42
+Initializing distributed: GLOBAL_RANK: 0, MEMBER: 1/1
+[W socket.cpp:464] [c10d] The server socket cannot be initialized on [::]:56879 (errno: 97 - Address family not supported by protocol).
+[W socket.cpp:697] [c10d] The client socket cannot be initialized to connect to [::ffff:127.0.0.1]:56879 (errno: 97 - Address family not supported by protocol).
+----------------------------------------------------------------------------------------------------
+distributed_backend=nccl
+All distributed processes registered. Starting with 1 processes
+----------------------------------------------------------------------------------------------------
+
+You are using a CUDA device ('NVIDIA GeForce RTX 3090') that has Tensor Cores. To properly utilize them, you should set `torch.set_float32_matmul_precision('medium' | 'high')` which will trade-off precision for performance. For more details, read https://pytorch.org/docs/stable/generated/torch.set_float32_matmul_precision.html#torch.set_float32_matmul_precision
+2024-12-10 15:32:04.618859: W tensorflow/stream_executor/platform/default/dso_loader.cc:64] Could not load dynamic library 'libcudart.so.11.0'; dlerror: libcudart.so.11.0: cannot open shared object file: No such file or directory; LD_LIBRARY_PATH: /usr/local/nvidia/lib:/usr/local/nvidia/lib64
+2024-12-10 15:32:04.618907: I tensorflow/stream_executor/cuda/cudart_stub.cc:29] Ignore above cudart dlerror if you do not have a GPU set up on your machine.
+Restoring states from the checkpoint path at /workspace/BlackoutDIFUSCO/lightning_logs/version_3/checkpoints/last.ckpt
+LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
+Loaded model weights from the checkpoint at /workspace/BlackoutDIFUSCO/lightning_logs/version_3/checkpoints/last.ckpt
+Validation dataset size: 128
+/usr/local/lib/python3.10/dist-packages/torch_geometric/deprecation.py:26: UserWarning: 'data.DataLoader' is deprecated, use 'loader.DataLoader' instead
+  warnings.warn(out)
+/usr/local/lib/python3.10/dist-packages/pytorch_lightning/trainer/connectors/data_connector.py:441: The 'val_dataloader' does not have many workers which may be a bottleneck. Consider increasing the value of the `num_workers` argument` to `num_workers=79` in the `DataLoader` to improve performance.
+Validation: |          | 0/? [00:00<?, ?it/s]Validation:   0%|          | 0/128 [00:00<?, ?it/s]Validation DataLoader 0:   0%|          | 0/128 [00:00<?, ?it/s]/usr/local/lib/python3.10/dist-packages/pytorch_lightning/trainer/connectors/logger_connector/result.py:212: You called `self.log('val/2opt_iterations', ...)` in your `validation_step` but the value needs to be floating to be reduced. Converting it to torch.float32. You can silence this warning by converting the value to floating point yourself. If you don't intend to reduce the value (for instance when logging the global step or epoch) then you can use `self.logger.log_metrics({'val/2opt_iterations': ...})` instead.
+Validation DataLoader 0:   1%|          | 1/128 [00:29<1:03:17,  0.03it/s]Validation DataLoader 0:   2%|▏         | 2/128 [01:03<1:06:45,  0.03it/s]Validation DataLoader 0:   2%|▏         | 3/128 [01:37<1:07:54,  0.03it/s]Validation DataLoader 0:   3%|▎         | 4/128 [02:11<1:07:59,  0.03it/s]Validation DataLoader 0:   4%|▍         | 5/128 [02:44<1:07:18,  0.03it/s]Validation DataLoader 0:   5%|▍         | 6/128 [03:16<1:06:36,  0.03it/s]Validation DataLoader 0:   5%|▌         | 7/128 [03:49<1:06:01,  0.03it/s]Validation DataLoader 0:   6%|▋         | 8/128 [04:20<1:05:10,  0.03it/s]Validation DataLoader 0:   7%|▋         | 9/128 [04:52<1:04:25,  0.03it/s]Validation DataLoader 0:   8%|▊         | 10/128 [05:24<1:03:49,  0.03it/s]Validation DataLoader 0:   9%|▊         | 11/128 [05:56<1:03:14,  0.03it/s]Validation DataLoader 0:   9%|▉         | 12/128 [06:29<1:02:47,  0.03it/s]Validation DataLoader 0:  10%|█         | 13/128 [07:02<1:02:19,  0.03it/s]Validation DataLoader 0:  11%|█         | 14/128 [07:36<1:01:59,  0.03it/s]Validation DataLoader 0:  12%|█▏        | 15/128 [08:10<1:01:36,  0.03it/s]Validation DataLoader 0:  12%|█▎        | 16/128 [08:43<1:01:03,  0.03it/s]Validation DataLoader 0:  13%|█▎        | 17/128 [09:15<1:00:27,  0.03it/s]Validation DataLoader 0:  14%|█▍        | 18/128 [09:49<1:00:04,  0.03it/s]Validation DataLoader 0:  15%|█▍        | 19/128 [10:23<59:36,  0.03it/s]  Validation DataLoader 0:  16%|█▌        | 20/128 [10:56<59:02,  0.03it/s]Validation DataLoader 0:  16%|█▋        | 21/128 [11:29<58:32,  0.03it/s]Validation DataLoader 0:  17%|█▋        | 22/128 [12:02<58:01,  0.03it/s]Validation DataLoader 0:  18%|█▊        | 23/128 [12:35<57:28,  0.03it/s]Validation DataLoader 0:  19%|█▉        | 24/128 [13:07<56:52,  0.03it/s]Validation DataLoader 0:  20%|█▉        | 25/128 [13:40<56:18,  0.03it/s]Validation DataLoader 0:  20%|██        | 26/128 [14:13<55:48,  0.03it/s]Validation DataLoader 0:  21%|██        | 27/128 [14:47<55:21,  0.03it/s]Validation DataLoader 0:  22%|██▏       | 28/128 [15:21<54:50,  0.03it/s]Validation DataLoader 0:  23%|██▎       | 29/128 [15:54<54:18,  0.03it/s]Validation DataLoader 0:  23%|██▎       | 30/128 [16:28<53:49,  0.03it/s]Validation DataLoader 0:  24%|██▍       | 31/128 [17:02<53:20,  0.03it/s]Validation DataLoader 0:  25%|██▌       | 32/128 [17:36<52:48,  0.03it/s]Validation DataLoader 0:  26%|██▌       | 33/128 [18:09<52:17,  0.03it/s]Validation DataLoader 0:  27%|██▋       | 34/128 [18:41<51:41,  0.03it/s]Validation DataLoader 0:  27%|██▋       | 35/128 [19:14<51:08,  0.03it/s]Validation DataLoader 0:  28%|██▊       | 36/128 [19:46<50:33,  0.03it/s]Validation DataLoader 0:  29%|██▉       | 37/128 [20:18<49:57,  0.03it/s]Validation DataLoader 0:  30%|██▉       | 38/128 [20:51<49:23,  0.03it/s]Validation DataLoader 0:  30%|███       | 39/128 [21:23<48:50,  0.03it/s]Validation DataLoader 0:  31%|███▏      | 40/128 [21:58<48:19,  0.03it/s]Validation DataLoader 0:  32%|███▏      | 41/128 [22:32<47:50,  0.03it/s]Validation DataLoader 0:  33%|███▎      | 42/128 [23:06<47:19,  0.03it/s]Validation DataLoader 0:  34%|███▎      | 43/128 [23:39<46:45,  0.03it/s]Validation DataLoader 0:  34%|███▍      | 44/128 [24:11<46:10,  0.03it/s]Validation DataLoader 0:  35%|███▌      | 45/128 [24:44<45:37,  0.03it/s]Validation DataLoader 0:  36%|███▌      | 46/128 [25:16<45:02,  0.03it/s]Validation DataLoader 0:  37%|███▋      | 47/128 [25:48<44:29,  0.03it/s]Validation DataLoader 0:  38%|███▊      | 48/128 [26:21<43:55,  0.03it/s]Validation DataLoader 0:  38%|███▊      | 49/128 [26:54<43:22,  0.03it/s]Validation DataLoader 0:  39%|███▉      | 50/128 [27:27<42:49,  0.03it/s]Validation DataLoader 0:  40%|███▉      | 51/128 [28:00<42:17,  0.03it/s]Validation DataLoader 0:  41%|████      | 52/128 [28:34<41:45,  0.03it/s]Validation DataLoader 0:  41%|████▏     | 53/128 [29:06<41:11,  0.03it/s]Validation DataLoader 0:  42%|████▏     | 54/128 [29:38<40:36,  0.03it/s]Validation DataLoader 0:  43%|████▎     | 55/128 [30:10<40:03,  0.03it/s]Validation DataLoader 0:  44%|████▍     | 56/128 [30:44<39:31,  0.03it/s]Validation DataLoader 0:  45%|████▍     | 57/128 [31:18<38:59,  0.03it/s]Validation DataLoader 0:  45%|████▌     | 58/128 [31:51<38:26,  0.03it/s]Validation DataLoader 0:  46%|████▌     | 59/128 [32:23<37:53,  0.03it/s]Validation DataLoader 0:  47%|████▋     | 60/128 [32:56<37:19,  0.03it/s]Validation DataLoader 0:  48%|████▊     | 61/128 [33:28<36:46,  0.03it/s]Validation DataLoader 0:  48%|████▊     | 62/128 [34:02<36:13,  0.03it/s]Validation DataLoader 0:  49%|████▉     | 63/128 [34:34<35:40,  0.03it/s]Validation DataLoader 0:  50%|█████     | 64/128 [35:06<35:06,  0.03it/s]Validation DataLoader 0:  51%|█████     | 65/128 [35:38<34:32,  0.03it/s]Validation DataLoader 0:  52%|█████▏    | 66/128 [36:11<34:00,  0.03it/s]Validation DataLoader 0:  52%|█████▏    | 67/128 [36:45<33:27,  0.03it/s]Validation DataLoader 0:  53%|█████▎    | 68/128 [37:18<32:55,  0.03it/s]Validation DataLoader 0:  54%|█████▍    | 69/128 [37:50<32:21,  0.03it/s]Validation DataLoader 0:  55%|█████▍    | 70/128 [38:23<31:48,  0.03it/s]Validation DataLoader 0:  55%|█████▌    | 71/128 [38:56<31:15,  0.03it/s]Validation DataLoader 0:  56%|█████▋    | 72/128 [39:29<30:42,  0.03it/s]Validation DataLoader 0:  57%|█████▋    | 73/128 [40:02<30:09,  0.03it/s]Validation DataLoader 0:  58%|█████▊    | 74/128 [40:34<29:36,  0.03it/s]Validation DataLoader 0:  59%|█████▊    | 75/128 [41:07<29:03,  0.03it/s]Validation DataLoader 0:  59%|█████▉    | 76/128 [41:38<28:29,  0.03it/s]Validation DataLoader 0:  60%|██████    | 77/128 [42:09<27:55,  0.03it/s]Validation DataLoader 0:  61%|██████    | 78/128 [42:42<27:22,  0.03it/s]Validation DataLoader 0:  62%|██████▏   | 79/128 [43:14<26:49,  0.03it/s]Validation DataLoader 0:  62%|██████▎   | 80/128 [43:47<26:16,  0.03it/s]Validation DataLoader 0:  63%|██████▎   | 81/128 [44:21<25:44,  0.03it/s]Validation DataLoader 0:  64%|██████▍   | 82/128 [44:54<25:11,  0.03it/s]Validation DataLoader 0:  65%|██████▍   | 83/128 [45:27<24:38,  0.03it/s]Validation DataLoader 0:  66%|██████▌   | 84/128 [46:00<24:06,  0.03it/s]Validation DataLoader 0:  66%|██████▋   | 85/128 [46:32<23:32,  0.03it/s]Validation DataLoader 0:  67%|██████▋   | 86/128 [47:05<23:00,  0.03it/s]Validation DataLoader 0:  68%|██████▊   | 87/128 [47:38<22:27,  0.03it/s]Validation DataLoader 0:  69%|██████▉   | 88/128 [48:12<21:54,  0.03it/s]Validation DataLoader 0:  70%|██████▉   | 89/128 [48:45<21:21,  0.03it/s]Validation DataLoader 0:  70%|███████   | 90/128 [49:19<20:49,  0.03it/s]Validation DataLoader 0:  71%|███████   | 91/128 [49:52<20:16,  0.03it/s]Validation DataLoader 0:  72%|███████▏  | 92/128 [50:25<19:43,  0.03it/s]Validation DataLoader 0:  73%|███████▎  | 93/128 [50:58<19:11,  0.03it/s]Validation DataLoader 0:  73%|███████▎  | 94/128 [51:30<18:37,  0.03it/s]Validation DataLoader 0:  74%|███████▍  | 95/128 [52:03<18:05,  0.03it/s]Validation DataLoader 0:  75%|███████▌  | 96/128 [52:36<17:32,  0.03it/s]Validation DataLoader 0:  76%|███████▌  | 97/128 [53:10<16:59,  0.03it/s]Validation DataLoader 0:  77%|███████▋  | 98/128 [53:42<16:26,  0.03it/s]Validation DataLoader 0:  77%|███████▋  | 99/128 [54:14<15:53,  0.03it/s]Validation DataLoader 0:  78%|███████▊  | 100/128 [54:46<15:20,  0.03it/s]Validation DataLoader 0:  79%|███████▉  | 101/128 [55:18<14:47,  0.03it/s]Validation DataLoader 0:  80%|███████▉  | 102/128 [55:50<14:14,  0.03it/s]Validation DataLoader 0:  80%|████████  | 103/128 [56:23<13:41,  0.03it/s]Validation DataLoader 0:  81%|████████▏ | 104/128 [56:56<13:08,  0.03it/s]Validation DataLoader 0:  82%|████████▏ | 105/128 [57:28<12:35,  0.03it/s]Validation DataLoader 0:  83%|████████▎ | 106/128 [58:02<12:02,  0.03it/s]Validation DataLoader 0:  84%|████████▎ | 107/128 [58:37<11:30,  0.03it/s]Validation DataLoader 0:  84%|████████▍ | 108/128 [59:10<10:57,  0.03it/s]Validation DataLoader 0:  85%|████████▌ | 109/128 [59:43<10:24,  0.03it/s]Validation DataLoader 0:  86%|████████▌ | 110/128 [1:00:17<09:51,  0.03it/s]Validation DataLoader 0:  87%|████████▋ | 111/128 [1:00:49<09:18,  0.03it/s]Validation DataLoader 0:  88%|████████▊ | 112/128 [1:01:22<08:46,  0.03it/s]Validation DataLoader 0:  88%|████████▊ | 113/128 [1:01:54<08:13,  0.03it/s]Validation DataLoader 0:  89%|████████▉ | 114/128 [1:02:26<07:40,  0.03it/s]Validation DataLoader 0:  90%|████████▉ | 115/128 [1:02:59<07:07,  0.03it/s]Validation DataLoader 0:  91%|█████████ | 116/128 [1:03:33<06:34,  0.03it/s]Validation DataLoader 0:  91%|█████████▏| 117/128 [1:04:06<06:01,  0.03it/s]Validation DataLoader 0:  92%|█████████▏| 118/128 [1:04:40<05:28,  0.03it/s]Validation DataLoader 0:  93%|█████████▎| 119/128 [1:05:12<04:55,  0.03it/s]Validation DataLoader 0:  94%|█████████▍| 120/128 [1:05:46<04:23,  0.03it/s]Validation DataLoader 0:  95%|█████████▍| 121/128 [1:06:19<03:50,  0.03it/s]Validation DataLoader 0:  95%|█████████▌| 122/128 [1:06:52<03:17,  0.03it/s]Validation DataLoader 0:  96%|█████████▌| 123/128 [1:07:25<02:44,  0.03it/s]Validation DataLoader 0:  97%|█████████▋| 124/128 [1:07:57<02:11,  0.03it/s]Validation DataLoader 0:  98%|█████████▊| 125/128 [1:08:31<01:38,  0.03it/s]Validation DataLoader 0:  98%|█████████▊| 126/128 [1:09:03<01:05,  0.03it/s]Validation DataLoader 0:  99%|█████████▉| 127/128 [1:09:37<00:32,  0.03it/s]Validation DataLoader 0: 100%|██████████| 128/128 [1:10:11<00:00,  0.03it/s]Validation DataLoader 0: 100%|██████████| 128/128 [1:10:13<00:00,  0.03it/s]
+┏━━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+┃      Validate metric      ┃       DataLoader 0        ┃
+┡━━━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━━━━━━┩
+│    val/2opt_iterations    │            1.0            │
+│        val/gt_cost        │    16.583557978549532     │
+│   val/merge_iterations    │      115425.34765625      │
+│      val_solved_cost      │    20.514530637755236     │
+└───────────────────────────┴───────────────────────────┘
+Execution time for ./runs_test_sample/test_tsp500_categorical.sh: 4231 seconds
+./runs_test_sample/test_tsp500_categorical.sh completed in 4231 seconds.

@@ -13,8 +13,6 @@ from pytorch_lightning.utilities import rank_zero_info
 
 # from pl_tsp_model import TSPModel
 from pl_tsp_model_professor import TSPModel
-from pl_mis_model import MISModel
-
 
 def arg_parser():
   parser = ArgumentParser(description='Train a Pytorch-Lightning diffusion model on a TSP dataset.')
@@ -78,9 +76,6 @@ def main(args):
   if args.task == 'tsp':
     model_class = TSPModel
     saving_mode = 'min'
-  elif args.task == 'mis':
-    model_class = MISModel
-    saving_mode = 'max'
   else:
     raise NotImplementedError
 

@@ -134,6 +134,7 @@ class TSPModel(COMetaModel):
 
     # Sample from diffusion
     xt, birthRatet = self.diffusion.sample(adj_matrix * (self.args.num_states - 1), tIndex)
+    xt = xt * (1.0 + 0.05 * torch.rand_like(xt))
     
     if self.sparse:
       tIndex = tIndex.reshape(-1, 1).repeat(1, 1, adj_matrix.shape[1]).reshape(-1)

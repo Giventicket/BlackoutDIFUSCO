@@ -20,5 +20,5 @@ python3 -u difusco/train.py \
   --inference_schedule "cosine" \
   --inference_diffusion_steps 50 \
   --two_opt_iterations 0 \
-  --ckpt_path "/workspace/DIFUSCO/lightning_logs/version_4/checkpoints/last.ckpt"
+  --ckpt_path "/workspace/BlackoutDIFUSCO/lightning_logs/version_3/checkpoints/last.ckpt"
   
