@@ -1,11 +1,13 @@
+#!/bin/bash
+
 # sh ./run_test_greedy.sh
 # sh ./run_test_greedy_2opt.sh
 # sh ./run_test_sample.sh
 # sh ./run_test_sample_2opt.sh
 
-sh ./runs/train_blackout_tsp50_original.sh
-sh ./runs/train_blackout_tsp50_improved.sh
-sh ./runs/train_blackout_tsp50_more_improved.sh
+sh ./runs_train/train_blackout_tsp50_original.sh
+sh ./runs_train/train_blackout_tsp50_improved.sh
+sh ./runs_train/train_blackout_tsp50_more_improved.sh
 # sh ./runs/train_categorical_tsp50.sh
 
 # sh ./runs/train_blackout_tsp100_original.sh

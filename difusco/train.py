@@ -11,8 +11,7 @@ from pytorch_lightning.callbacks.progress import TQDMProgressBar
 from pytorch_lightning.strategies.ddp import DDPStrategy
 from pytorch_lightning.utilities import rank_zero_info
 
-# from pl_tsp_model import TSPModel
-from pl_tsp_model_professor import TSPModel
+from pl_tsp_model import TSPModel
 
 def arg_parser():
   parser = ArgumentParser(description='Train a Pytorch-Lightning diffusion model on a TSP dataset.')
