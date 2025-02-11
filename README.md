@@ -1,5 +1,7 @@
 # Blackout DIFUSCO: Advancing Diffusion-Based Optimization for Combinatorial Problems
 
+This paper has been archived at [arXiv:2502.05221](https://arxiv.org/abs/2502.05221).
+
 ![Blackout Diffusion](forward_blackout.gif)
 
 ## Abstract
